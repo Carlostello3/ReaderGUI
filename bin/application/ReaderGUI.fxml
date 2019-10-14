@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Reader">
+   <children>
+      <Pane prefHeight="800.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="titleText" layoutX="183.0" layoutY="77.0" text="Word Count!">
+               <font>
+                  <Font name="System Bold" size="39.0" />
+               </font>
+            </Label>
+            <Text fx:id="instruText" layoutX="136.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter a website's URL to count the words in it." textAlignment="CENTER" wrappingWidth="328.11279296875" />
+            <TextField fx:id="urlField" layoutX="112.0" layoutY="182.0" prefHeight="27.0" prefWidth="376.0" promptText="https://example.com" />
+            <Button fx:id="goButton" layoutX="249.0" layoutY="224.0" mnemonicParsing="false" onAction="#getURL" text="Let's Count!">
+               <font>
+                  <Font name="SF UI Display Bold" size="15.0" />
+               </font>
+            </Button>
+            <Text fx:id="instruText2" layoutX="189.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Only top 20 words will be displayed." textAlignment="CENTER" />
+            <Text fx:id="authorID" layoutX="24.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carlos Tello - CEN 3024C - Word Count">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="resultsField" layoutX="113.0" layoutY="329.0" prefHeight="418.0" prefWidth="376.0" />
+            <Text fx:id="exampleText" layoutX="113.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Example:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Text>
+            <Text fx:id="example1" layoutX="113.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apple = 134" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
