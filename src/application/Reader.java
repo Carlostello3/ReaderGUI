@@ -28,11 +28,20 @@ public class Reader {
 	
 	
 	
-	public void getURL() throws IOException {
-		
+	
+	public String getURL() throws IOException {
+	
 		String tempURL = urlField.getText();
+		//String tempURL = "https://en.wikipedia.org/wiki/Software_testing";
+		
 		readPage(tempURL);
+
+		return tempURL;
+		
+		
+	
 	}
+	
 	
 	
 	public void readPage(String urlPage) throws IOException {
@@ -84,6 +93,7 @@ public class Reader {
 				}
 			
 			}
+		sc.close();
 	}//end of readPage
 
 public static HashMap<String, Integer> sortByValue (HashMap<String, Integer> wordList){
