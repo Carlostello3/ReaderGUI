@@ -1,3 +1,7 @@
+/**
+ *  @author Carlos Tello
+ */
+
 package application;
 
 import java.io.IOException;
@@ -15,6 +19,11 @@ import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.text.*;
 
+/**
+ * 
+ *	Constructs logic and contains key methods for obtaining URL, Read File, and Organizing list of words in order of occurence
+ * 	@author Carlos_Tello
+ */
 public class Reader {
 	
 	@FXML private Label titleText;
@@ -28,7 +37,11 @@ public class Reader {
 	
 	
 	
-	
+	/**
+	 * 
+	 * @return tempURL - temporary URL string
+	 * @throws IOException throws exception given invalid input
+	 */
 	public String getURL() throws IOException {
 	
 		String tempURL = urlField.getText();
@@ -43,7 +56,11 @@ public class Reader {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @param urlPage string passed from the getURL() method with returns tempURL
+	 * @throws IOException throws exception given invalid input
+	 */
 	public void readPage(String urlPage) throws IOException {
 		
 		URL url = new URL(urlPage);
@@ -95,7 +112,11 @@ public class Reader {
 			}
 		sc.close();
 	}//end of readPage
-
+/**
+ * 
+ * @param wordList list of words in no specific order
+ * @return returns a temporary HashMap with words in order by occurrence
+ */
 public static HashMap<String, Integer> sortByValue (HashMap<String, Integer> wordList){
 		
 		//Create new List to hold data
