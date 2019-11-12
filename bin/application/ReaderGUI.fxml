@@ -17,7 +17,7 @@
             </Label>
             <Text fx:id="instruText" layoutX="136.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter a website's URL to count the words in it." textAlignment="CENTER" wrappingWidth="328.11279296875" />
             <TextField fx:id="urlField" layoutX="112.0" layoutY="182.0" prefHeight="27.0" prefWidth="376.0" promptText="https://example.com" />
-            <Button fx:id="goButton" layoutX="249.0" layoutY="224.0" mnemonicParsing="false" onAction="#getURL" text="Let's Count!">
+            <Button fx:id="goButton" layoutX="249.0" layoutY="258.0" mnemonicParsing="false" onAction="#dataPicker" text="Let's Count!">
                <font>
                   <Font name="SF UI Display Bold" size="15.0" />
                </font>
@@ -28,13 +28,19 @@
                   <Font size="10.0" />
                </font>
             </Text>
-            <TextArea fx:id="resultsField" layoutX="113.0" layoutY="329.0" prefHeight="418.0" prefWidth="376.0" />
-            <Text fx:id="exampleText" layoutX="113.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Example:">
+            <TextArea fx:id="resultsField" layoutX="113.0" layoutY="352.0" prefHeight="395.0" prefWidth="376.0" />
+            <Text fx:id="exampleText" layoutX="113.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Example:">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Text>
-            <Text fx:id="example1" layoutX="113.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apple = 134" />
+            <Text fx:id="example1" layoutX="113.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apple = 134" />
+            <RadioButton fx:id="websiteButton" layoutX="81.0" layoutY="187.0" mnemonicParsing="false">
+               <toggleGroup>
+                  <ToggleGroup fx:id="radioGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="databaseButton" layoutX="81.0" layoutY="220.0" mnemonicParsing="false" text="  Read from database: &quot;wordOccurrences&quot;" toggleGroup="$radioGroup" />
          </children>
       </Pane>
    </children>

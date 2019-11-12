@@ -6,6 +6,10 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -31,28 +35,39 @@ public class Reader {
 	@FXML private TextField urlField;
 	@FXML private Button goButton;
 	@FXML private TextArea resultsField;
+	@FXML private RadioButton websiteButton, databaseButton;
 	
 	
 	//VARIABLES AND METHODS
+	
+	public void dataPicker() throws Exception {
+		
+		if (websiteButton.isSelected()) {
+			getURL();
+			
+		} else if (databaseButton.isSelected()) {
+			readDatabase();
+			
+		}
+		
+	}
 	
 	
 	
 	/**
 	 * 
 	 * @return tempURL - temporary URL string
-	 * @throws IOException throws exception given invalid input
+	 * @throws Exception 
 	 */
-	public String getURL() throws IOException {
+	public String getURL() throws Exception {
 	
 		String tempURL = urlField.getText();
+		
+		//TESTING VARIABLE
 		//String tempURL = "https://en.wikipedia.org/wiki/Software_testing";
 		
 		readPage(tempURL);
-
 		return tempURL;
-		
-		
-	
 	}
 	
 	
@@ -143,5 +158,118 @@ public static HashMap<String, Integer> sortByValue (HashMap<String, Integer> wor
 		return temp;
 		
 	}
+
+/**
+ * Database connection
+ * @return conn or null
+ */
+public static Connection getConnection() throws Exception {
+	try {
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String url = "jdbc:mysql://localhost:3306/wordOccurrences";
+		String username = "root";
+		String password = "Fall2019";
+		Class.forName(driver);		
+		
+		Connection conn = DriverManager.getConnection(url, username, password);
+		System.out.println("Connected");
+		
+		return conn;
+		
+	} catch (Exception e) {
+		System.out.println(e);
+	}
+	
+	
+	
+	return null;
+}
+
+public void readDatabase() {
+	String wordHold = null;
+	
+	int wordCount = 1;
+	
+	HashMap <String, Integer> wordList = new HashMap <String, Integer>();
+	
+	//Database connection
+	Connection conn = null;
+	
+	
+	try {
+		
+		String url = "jdbc:mysql://localhost:3306/wordOccurrences";
+		String username = "root";
+		String password = "Fall2019";
+		conn = DriverManager.getConnection(url, username, password);
+		
+		
+		String sqlGetInfo = "SELECT * FROM wordOccurrences.word;";
+		
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sqlGetInfo);
+		
+		//Loop results
+		
+		while(rs.next()) {
+			wordCount = 1;
+			wordHold = rs.getString("word");
+			
+			
+			if (wordList.isEmpty()) {
+				wordList.put(wordHold, wordCount);
+			} else {
+				if (wordList.containsKey(wordHold)) {
+					wordCount = wordList.get(wordHold);
+					wordCount++;
+					wordList.put(wordHold, wordCount);
+				} else {
+					wordList.put(wordHold, wordCount);
+				}//end else
+			}//end of outter else statement
+		}//end while loop
+		
+		
+		
+		//Call method to sort HashMap	
+		Map<String, Integer> wordSorted = sortByValue(wordList);
+		
+		//Print map with sorted words
+				resultsField.clear();
+				for (Map.Entry<String, Integer> lastWordBank : wordSorted.entrySet()) {
+					resultsField.appendText(lastWordBank.getKey() + " = " + lastWordBank.getValue() + "\n");
+				}
+		
+	} catch (Exception e) {
+		e.getStackTrace();
+	}
 	
 }
+
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
